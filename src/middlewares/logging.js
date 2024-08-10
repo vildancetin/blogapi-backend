@@ -12,6 +12,10 @@ const now=new Date()
 
 const today = now.toISOString().split("T")[0]
 
+const logStream = fs.createWriteStream(`./logs/${today}.log`,{flags:"a+"})
+logStream.on('error', (err) => {
+    stream.close();
+});
 module.exports=morgan("combined",{
-    stream:fs.createWriteStream(`./logs/${today}.log`,{flags:"a+"})
+    stream:logStream
 })
