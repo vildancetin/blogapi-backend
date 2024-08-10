@@ -1,0 +1,1212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "",
+    "contact": {
+      "name": "vildan",
+      "email": "vcetin1356@gmail.com"
+    },
+    "license": {
+      "name": "ISC"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Simple Token Authentication * Example: <b>Token ...tokenKey...</b>"
+    }
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Login with email and password",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "Delete Token",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/blogs/categories": {
+      "get": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "List Categories",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r  <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r  <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r  <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Create Categories",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Test Category"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/blogs/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Get Single Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Update Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Test Category"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Delete Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Update Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Test Category"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/blogs/categories/{categoryId}/posts": {
+      "get": {
+        "tags": [
+          "Blog Categories"
+        ],
+        "summary": "Posts of Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/blogs/posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "List Posts",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Create Post",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "blogCategoryId": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Test Post"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "Test Content Post"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/blogs/posts/{postId}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get Single Post",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Update Post",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "Test Post"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Delete Post",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Update Post",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "Test Post"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/blogs/comments": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "List Comments",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Create Comment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "post": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "Test Content Comment"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/blogs/comments/{commentId}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Get Single Comment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Update Comment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "Test Comment"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Delete Comment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Update Comment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "Test Comment"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r  <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r  <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r  <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Single User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastName": {
+                  "type": "string",
+                  "example": "Example updated"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastName": {
+                  "type": "string",
+                  "example": "Example updated"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "auth/login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "type": "object",
+      "properties": {
+        "token.refresh": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "example": "{ token: { refresh: ... } }"
+            },
+            "type": {
+              "type": "string",
+              "example": "String"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "lastName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "email": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "array",
+              "example": [
+                true,
+                "Email field must be required"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "unique": {
+              "type": "array",
+              "example": [
+                true,
+                "There is this email. Email field must be unique"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "validate": {
+              "type": "array",
+              "example": [
+                null,
+                "Email type is not correct."
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "set": {
+              "type": "function"
+            }
+          }
+        },
+        "profilePicture": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            }
+          }
+        },
+        "bio": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            }
+          }
+        },
+        "role": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "enum": {
+              "type": "array",
+              "example": [
+                "admin",
+                "user"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "default": {
+              "type": "string",
+              "example": "user"
+            }
+          }
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "BlogPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "BlogPost": {
+      "type": "object",
+      "properties": {
+        "blogCategoryId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "BlogCategory"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "likes": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "views": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              }
+            }
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "BlogComment"
+              },
+              "trim": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "BlogCategory": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "BlogPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "BlogComment": {
+      "type": "object",
+      "properties": {
+        "blogCategoryId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "BlogCategory"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "likes": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "views": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              }
+            }
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "BlogComment"
+              },
+              "trim": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Token": []
+    }
+  ]
+}
